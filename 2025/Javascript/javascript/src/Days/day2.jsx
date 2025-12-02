@@ -12,16 +12,21 @@ const Day2 = () => {
             .catch(error => console.error('Error fetching file:', error));
     }, []);
 
-    const solvePart1 = () => {
-        const allIds = [];
-        const invalidIds = [];
+    const allIds = [];
 
+    const getAllIds = () => {
         for (let i = 0; i < input.length; i++) {
             const item = input[i];
             const idRange = item.split('-').map(Number);
             Array.from({ length: idRange[1] - idRange[0] + 1 }, (_, i) => idRange[0] + i)
                 .forEach(id => allIds.push(id));
         }
+    }
+
+    const solvePart1 = () => {
+        const invalidIds = [];
+
+        getAllIds();
 
         allIds.forEach(id => {
             const idString = id.toString();
@@ -40,7 +45,19 @@ const Day2 = () => {
     }
 
     const solvePart2 = () => {
-        return 'Solution';
+        const invalidIds = [];
+
+        allIds.forEach(id => {
+            const idString = id.toString();
+            if ((idString.length % 2 == 0 && idString.match(/^0*(\d+)\1+$/g)) ||
+                (idString.length % 2 != 0 && idString.match(/^([1-9]+)\1+$/))) {
+                invalidIds.push(id);
+            }
+        })
+
+        const sum = invalidIds.reduce((total, x) => total + x, 0);
+
+        return sum;
     }
 
     return (
