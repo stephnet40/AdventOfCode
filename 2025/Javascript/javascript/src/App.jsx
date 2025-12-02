@@ -1,8 +1,6 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
 import './App.css'
-import Day1 from './Day1/day1'
+import Day1 from './Days/day1'
+import Day2 from './Days/day2'
 
 function App() {
 
@@ -11,6 +9,7 @@ function App() {
             <h1>Advent of Code 2025</h1>
 
             <Day1></Day1>
+            <Day2></Day2>
         </div>
     )
 }
