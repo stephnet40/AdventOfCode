@@ -41,7 +41,36 @@ const Day1 = () => {
     }
 
     const solvePart2 = () => {
-        return "Solution"
+
+        let position = 50;
+        let numberOfZeros = 0;
+
+        for (let i = 0; i < input.length; i++) {
+            const item = input[i].split(/(?<=\D)(?=\d)|(?<=\d)(?=\D)/);
+            const direction = item[0];
+            let distance = Number(item[1]);
+
+            const rotations = Math.floor(distance / 100);
+            distance -= rotations * 100;
+            numberOfZeros += rotations;
+
+            switch (direction) {
+                case "R":
+                    if (position + distance > 100) numberOfZeros++;
+                    position = (position + distance) % 100;
+                    break;
+                case "L":
+                    if (position != 0 && position - distance < 0) numberOfZeros++;
+                    position = (position - distance % 100 + 100) % 100;
+                    break;
+            }
+
+            if (position == 0) {
+                numberOfZeros++;
+            }
+        }
+
+        return numberOfZeros;
     }
 
     return (
