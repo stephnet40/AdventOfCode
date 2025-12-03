@@ -29,13 +29,40 @@ const Day3 = () => {
 
             joltages.push(highest);
         })
+
         const sum = joltages.map(Number).reduce((total, x) => total + x, 0);
 
         return sum;
     }
 
     const solvePart2 = () => {
-        return 'Solution';
+
+        const joltages = [];
+
+        input.forEach(batteries => {
+            const batteriesArr = [...batteries];
+
+            let needToRemove = batteriesArr.length - 12;
+            while (needToRemove > 0) {
+                for (let i = 0; i < batteriesArr.length - 1; i++) {
+                    if (batteriesArr[i] < batteriesArr[i + 1]) {
+                        batteriesArr.splice(i, 1);
+                        break;
+                    }
+                }
+                needToRemove--;
+            }
+
+            if (batteriesArr.length > 12) {
+                batteriesArr.splice(12);
+            }
+
+            joltages.push(batteriesArr.join(''));
+        })
+
+        const sum = joltages.map(Number).reduce((total, x) => total + x, 0);
+
+        return sum;
     }
 
     return (
