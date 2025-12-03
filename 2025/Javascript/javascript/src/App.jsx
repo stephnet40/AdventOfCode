@@ -1,6 +1,7 @@
 import './App.css'
 import Day1 from './Days/day1'
 import Day2 from './Days/day2'
+import Day3 from './Days/day3'
 
 function App() {
 
@@ -8,8 +9,9 @@ function App() {
         <div>
             <h1>Advent of Code 2025</h1>
 
-            <Day1></Day1>
-            <Day2></Day2>
+            {/*<Day1></Day1>*/}
+            {/*<Day2></Day2>*/}
+            <Day3></Day3>
         </div>
     )
 }
